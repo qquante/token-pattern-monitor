@@ -1,0 +1,105 @@
+{
+    "name": "OPENVPP Template",
+    "symbol": "OPENVPP",
+    "checksum": "#4fe59d60",
+    "reference_contract": "0x506D6c41548B6CD0F00C6610e9411468bb01609c",
+    "selector_count": 46,
+    "selectors": {
+        "0x05e72d39": "unknown()",
+        "0x06fdde03": "name()",
+        "0x095ea7b3": "approve(address,uint256)",
+        "0x118cdaa7": "OwnableUnauthorizedAccount(address)",
+        "0x16c2be6b": "isTaxExempt(address)",
+        "0x18160ddd": "totalSupply()",
+        "0x1dc61040": "setTaxExempt(address,bool)",
+        "0x23b872dd": "transferFrom(address,address,uint256)",
+        "0x313ce567": "decimals()",
+        "0x31461072": "unknown()",
+        "0x3565b610": "unknown()",
+        "0x3852c326": "setTax(uint32)",
+        "0x38da3b15": "OnlyBridge()",
+        "0x391434e3": "unknown()",
+        "0x40c10f19": "mint(address,uint256)",
+        "0x42966c68": "burn(uint256)",
+        "0x43000816": "unknown()",
+        "0x4a1406b1": "unknown()",
+        "0x4b637e8f": "ERC20InvalidSender(address)",
+        "0x4e487b71": "Panic(uint256)",
+        "0x565b6005": "unknown()",
+        "0x60208401": "unknown()",
+        "0x70a08231": "balanceOf(address)",
+        "0x715018a6": "renounceOwnership()",
+        "0x79ba5097": "acceptOwnership()",
+        "0x7dc7a0d9": "unknown()",
+        "0x86a22eff": "setPair(address,bool)",
+        "0x8da5cb5b": "owner()",
+        "0x8fba7bf5": "TaxTooBig(uint32,uint32)",
+        "0x95d89b41": "symbol()",
+        "0x99c8d556": "tax()",
+        "0xa9059cbb": "transfer(address,uint256)",
+        "0xbd0932d0": "setTaxExemptBatch(address[],bool)",
+        "0xc2103825": "setPairBatch(address[],bool)",
+        "0xc4a11628": "unknown()",
+        "0xcd8de42c": "setTaxReceiver(address)",
+        "0xd92e233d": "ZeroAddress()",
+        "0xdd62ed3e": "allowance(address,address)",
+        "0xe30c3978": "pendingOwner()",
+        "0xe5e31b13": "isPair(address)",
+        "0xe602df05": "ERC20InvalidApprover(address)",
+        "0xe6ef73d6": "taxReceiver()",
+        "0xec442f05": "ERC20InvalidReceiver(address)",
+        "0xee9a31a2": "BRIDGE()",
+        "0xf2fde38b": "transferOwnership(address)",
+        "0xffffffff": "unknown()"
+    },
+    "categories": {
+        "erc20_standard": [
+            "0x06fdde03",
+            "0x095ea7b3",
+            "0x18160ddd",
+            "0x23b872dd",
+            "0x313ce567",
+            "0x70a08231",
+            "0xa9059cbb",
+            "0xdd62ed3e"
+        ],
+        "ownership": [
+            "0x715018a6",
+            "0x79ba5097",
+            "0x8da5cb5b",
+            "0xe30c3978",
+            "0xf2fde38b"
+        ],
+        "mint_burn": [
+            "0x40c10f19",
+            "0x42966c68"
+        ],
+        "tax_control": [
+            "0x16c2be6b",
+            "0x1dc61040",
+            "0x3852c326",
+            "0x99c8d556",
+            "0xbd0932d0",
+            "0xcd8de42c",
+            "0xe6ef73d6"
+        ],
+        "dex_pair": [
+            "0x86a22eff",
+            "0xc2103825",
+            "0xe5e31b13"
+        ],
+        "bridge": [
+            "0x38da3b15",
+            "0xee9a31a2"
+        ],
+        "errors": [
+            "0x118cdaa7",
+            "0x4b637e8f",
+            "0x4e487b71",
+            "0x8fba7bf5",
+            "0xd92e233d",
+            "0xe602df05",
+            "0xec442f05"
+        ]
+    }
+}

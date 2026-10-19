@@ -1,0 +1,8 @@
+services:
+  checksum-monitor:
+    build: .
+    container_name: checksum-monitor
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./matches.log:/app/matches.log
