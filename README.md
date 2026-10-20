@@ -1,77 +1,33 @@
 # Token Pattern Monitor
 
-**Contract selector/bytecode comparison and BSC factory-event monitoring.**
-
 ![Language: JavaScript](https://img.shields.io/badge/Language-JavaScript-F7DF1E?style=flat-square&logo=javascript) ![Chain: ethers](https://img.shields.io/badge/Chain-ethers-555555?style=flat-square) [![License: MIT](https://img.shields.io/badge/License-MIT-555555?style=flat-square)](LICENSE)
 
-[Overview](#overview) · [Quickstart](#quickstart) · [Example](#example) · [Validation](#validation) · [Documentation](#documentation)
+Research EVM token-contract similarities by extracting selector-like bytecode patterns, computing a compact signature and comparing deployed contracts.
 
-## Overview
+The repository includes Base/Ethereum/BSC analysis scripts and a BSC event-monitoring path. Some entrypoints contain selected example addresses and providers, so inspect their constants before using them for a different investigation.
 
-A contract-pattern research toolkit that compares selectors/checksums and monitors new BSC token events.
+## How the compact checksum is built
 
-**Stack:** JavaScript · ethers · axios · Python research helpers · Docker
+In [compare_contracts.js](compare_contracts.js):
 
-## A pattern match is an inspection signal
+1. Scan bytecode for `PUSH4`-shaped selector candidates.
+2. Deduplicate and sort the candidate selectors.
+3. Concatenate their bytes and compute Keccak-256.
+4. Display the first four hash bytes as a compact `#........` label.
 
-| Component | Behavior |
+This is a selector-set research signature, **not an EIP-55 address checksum**. A byte-pattern scan can include incidental constants, and two matching signatures do not prove equivalent contract behavior or safety.
+
+## Explore the source surfaces
+
+| Source | Purpose |
 | --- | --- |
-| Compare | Selector and bytecode helpers compare contract patterns. |
-| Observe | A WebSocket monitor reads configured factory events. |
-| Report | Optional Telegram output reports selected matches. |
+| [fetch_selectors.js](fetch_selectors.js) | Selector retrieval/inspection. |
+| [compare_contracts.js](compare_contracts.js) | Bytecode and token metadata comparison. |
+| [monitor.js](monitor.js) | Operational event-monitoring path. |
+| [test_bytecode_checksum.js](test_bytecode_checksum.js) | Checksum investigation script. |
 
-## Processing path
+Use `npm ci --ignore-scripts` for declared Node dependencies, then `node --check compare_contracts.js` to check syntax without contacting an RPC. Running the comparison or monitor can make provider requests. Python helpers are separate research scripts; the `test` filenames do not establish a hermetic regression suite or validated detection accuracy.
 
-```mermaid
-flowchart LR
-  N0["Factory event"]
-  N1["contract/selector inspection"]
-  N2["pattern comparison"]
-  N3["optional alert"]
-N0 --> N1 --> N2 --> N3
-```
+**Technology:** JavaScript · ethers · axios · Python research helpers · Docker
 
-## Quickstart
-
-```console
-npm install --ignore-scripts
-node --check monitor.js
-node --check compare_contracts.js
-```
-
-The commands above install prerequisites or run the specified offline checks. Live collection, cloud operations, messaging and trading are separate operational steps when present.
-
-## Example
-
-**Inspect the workflow**
-
-Inspect [compare_contracts.js](compare_contracts.js) and the selector helpers before using a live factory feed. Trace the pattern being compared and the matching condition. A selector or checksum match is evidence for further inspection, not proof of equivalent behavior or contract safety.
-
-## Configuration and storage
-
-`WS_RPC`, `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are local inputs for the operational monitor. Research output and templates are file-based; no application database is declared.
-
-## Repository guide
-
-| Location | Responsibility |
-| --- | --- |
-| [monitor.js](monitor.js) | Factory-event monitoring |
-| [compare_contracts.js](compare_contracts.js) | Pattern comparison |
-| [fetch_selectors.js](fetch_selectors.js) | Selector inspection |
-| [package.json](package.json) | Runtime dependencies |
-
-## Validation
-
-The quickstart lists the declared checks. No passing CI or coverage claim is implied by the technology badges.
-
-## Scope and operational boundaries
-
-No dedicated offline behavior suite is declared in package scripts. Syntax checks do not open a WebSocket or send Telegram messages. Provider/factory compatibility requires separate verification.
-
-## Documentation
-
-- The repository guide above links directly to the implementation and configuration files.
-
-## License and attribution
-
-Project-authored source code is licensed under the [MIT License](LICENSE). Third-party components and datasets retain their respective rights and licenses.
+Project-authored source: [MIT](LICENSE). Third-party components retain their own notices and terms.
