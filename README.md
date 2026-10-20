@@ -30,4 +30,4 @@ A pattern match is not a safety or behavior guarantee. Hardcoded bot/chat/RPC co
 
 ## License
 
-No open-source license has been granted. Redistribution terms remain to be defined.
+Project-authored source code is licensed under the [MIT License](LICENSE). Third-party components and datasets retain their respective rights and licenses.
